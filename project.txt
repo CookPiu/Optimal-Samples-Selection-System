@@ -1,0 +1,74 @@
+It is known that the amount of data generated has been increasingly tremendous in the past few years due to 
+Covid-19 pandemic, the ease of accessing the internet and cheap or inexpensive mass storage devices. The ease 
+of transferring data through internet, communication lines and digital data are used in all walks of life. 
+Nowadays, these big data have been used for data mining, knowledge discovery, machine learning, statistical 
+learning, statistical analysis and experiments. In order to extract or discover useful data, information or 
+knowledge from these big data, one of the methods we usually adopted is the optimal samples selection.  
+ 
+In this group project, you are expected to extract a subset of samples from these big data. In order to extract this 
+subset of data (samples), we have to make sure that the subset of samples extracted or selected should be as fair 
+and unbiased as possible and also as optimal as possible. In the following we propose a useful method.  
+ 
+Assuming that there are m samples (45<=m<=54), any group of n (7<=n<=25) samples out of these m samples are 
+randomly selected. There are mCn  groups of n samples. From one of these groups of n samples, we randomly 
+select e.g., k=6 (4<=k<=7) samples to form some groups. So there will be nCk  groups of k=6 samples selected. 
+Among these groups of k=6 samples, we would like to optimize them by selecting ONLY some of them. The 
+conditions that need to be fulfilled are listed as follows: 
+1. There are at least ONE group of k samples, in which s (3<=s<=7) samples have been selected from the j 
+(where s<=j<=k) samples, i.e., when j=4, we have s=3 or 4; when j=5, we have s=3, 4 or 5; when j=6, we 
+have s=3, 4, 5 or 6; and when j=7, we have s=3, 4, 5, 6 or 7. 
+ 
+E.g. 1, when m=45, n=7 (we randomly choose 7 samples, A,B,C,D,E,F,G and k=6, j=5, s=5, we obtain the 
+following minimum 6 groups of k=6 samples, which guarantee at least ONE group of k=6 samples has ALL 
+s=5 samples groups from ALL j=5 samples groups of n=7 samples,(i.e.,nCj=7C5 and jCs =5C5). 
+  1.  A,B,C,D,E,G  2.  A,B,C,D,F,G  3.  A,B,C,E,F,G 
+  4. A,B,D,E,F,G,  5.  A,C,D,E,F,G  6. B,C,D,E,F,G 
+E.g. 2, when m=45, n=8 (we randomly choose 8 samples, A,B,C,D,E,F,G,H and k=6, j=4, s=4, we obtain 
+the following minimum 7 groups of k=6 samples, which guarantees at least ONE group of k=6 samples has 
+ALL s=4 samples groups from ALL j=4 samples groups of n=8 samples, (i.e., nCj=8C4 and jCs=4C4). 
+  1. A,B,C,D,G,H  2. A,B,C,E,G,H  3. A,B,C,F,G,H 
+  4. A,B,D,E,F,G  5. A,C,D,E,F,H  6. B,C,D,E,F,H  7.  C,D,E,F,G,H 
+E.g. 3, when m=45, n=9 (we randomly choose 9 samples, A,B,C,D,E,F,G,H,I and k=6, j=4, s=4, we obtain 
+the following minimum 12 groups of k=6 samples, which guarantees at least ONE group of k=6 samples 
+has ALL s=4 samples groups from ALL j=4 samples groups of n=9 samples, (i.e., nCj=9C4 and 4C4). 
+  1. A,B,C,D,E,I  2. A,B,C,E,G,H  3. A,B,C,F,H,I  4. A,B,D,E,F,G 
+5. A,B,D,G,H,I.  6. A,C,D,E,F,H  7. A,C,D,F,G,I  8. A,E,F,G,H,I 
+9. B,C,D,F,G,H  10. B,C,E,F,G,I  11. B,D,E,F,H,I  12. C,D,E,G,H,I 
+E.g.4, when m=45, n=8 (we randomly choose 8 samples, A,B,C,D,E,F,G,H and k=6, j=6, s=5, we obtain 
+the following minimum 4 groups of k=6 samples, which guarantees at least ONE group of k=6 samples has 
+at least ONE s=5 samples group from ALL j=6 samples groups of n=8 samples, (i.e., nCj=8C6 and 6C5). 
+  1. A,B,C,E,G,H  2. A,B,D,F,G,H  3. A,C,D,E,F,H  4. B,C,D,E,F,G 
+E.g. 5, when m=45, n=8 (we randomly choose 8 samples, A,B,C,D,E,F,G,H and k=6, j=6, s=5, we obtain 
+the following minimum 10 groups of k=6 samples, which guarantees at least ONE group of k=6 samples 
+has at least FOUR s=5 samples groups from ALL j=6 samples groups of n=9 samples, (i.e., nCj=8C6 and 
+6C5). 
+  1. A,B,C,D,E,H  2. A,B,C,E,F,H  3. A,B,C,E,G,H  4. A,B,D,E,F,G 
+5. A,B,D,F,G,H.  6. A,C,D,E,F,G  7. A,D,E,F,G,H  8. B,C,D,E,G,H 
+9. B,C,D,F,G,H  10. B,D,E,F,G,H   
+E.g. 6, when m=45, n=9 (we randomly choose 9 samples, A,B,C,D,E,F,G,H,I  and k=6, j=5, s=4, we 
+obtain the following minimum 3 groups of k=6 samples, which guarantees at least ONE group of k=6 
+samples has at least ONE s=4 samples group from ALL j=5 samples groups of n=9 samples, (i.e., nCj=9C5 
+and 5C4). 
+  1. A,B,D,F,G,H  2. A,C,E,G,H,I  3.  B,C,D,E,F,I 
+E.g. 7, when m=45, n=10 (we randomly choose 10 samples, A,B,C,D,E,F,G,H,I,J  and k=6, j=6, s=4, we 
+obtain the following minimum 3 groups of k=6 samples, which guarantees at least ONE group of k=6 
+samples has at least ONE s=4 samples group from ALL j=6 samples groups of n=10 samples, (i.e., 10C6 and 
+6C4). 
+  1. A,B,E,G,I,J  2. A,C,E,G,H,J  3. B,C,D,F,H,I 
+E.g. 8, when m=45, n=12 (we randomly choose 12 samples, A,B,C,D,E,F,G,H,I,J,K,L and k=6, j=6, s=4, 
+we obtain the following minimum 6 groups of k=6 samples, which guarantees at least ONE group of k=6 
+samples has at least ONE s=4 samples group from ALL j=6 samples groups of n=12 samples. (i.e., nCj=12C6 
+and jCs=6C4). 
+  1. A,B,D,G,K,L  2. A,C,D,H,J,L  3. A,D,E,F,I,L   
+4. B,C,G,H,J,K.  5. B,E,F,G,I,K  6. C,E,F,H,I,J 
+2.  A user friendly interface should be provided. A system title is given as, e.g., “An Optimal Samples Selection System”.  
+3.  The user needs to input the values for parameters m, n, k, j and s. They are all positive integers. See Screens below. 
+4.  The system can either randomly select n out of m numbers or a user can input n out of m numbers, and displays these 
+n numbers on screen. 
+5. Output groups of k=6 samples (results) to a DB file, e.g., 40-9-6-4-4-x-y for m=40, n=9, k=6, j=s=4 for the xth run 
+and y is the number of results obtained. 
+6.  Provide a way to EXECUTE and DELETE, etc. the obtained groups of k samples (results) onto the screen from a 
+DB file, e.g., 45-9-6-4-4-x-y.These groups of k=6 samples are selected from the list. Please see the screens below.  
+
+
+

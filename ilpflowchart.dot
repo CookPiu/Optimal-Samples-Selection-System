@@ -1,0 +1,30 @@
+digraph ILPFlowchart {
+    rankdir=TB;  // Top to bottom layout
+
+    // Start and end nodes
+    node [shape=ellipse, style=filled, color=lightgray]; Start, End
+
+    // Process nodes (rectangles)
+    node [shape=rect, style=filled, color=lightblue]; "Input parameters (n_samples, k, j, s)", "Generate all possible k-groups", "Generate all possible j-groups", "Generate all s-subgroups for each j-group", "Set up ILP model", "Define decision variables", "Define objective function", "Set constraints to cover each j-group", "Solve ILP model", "Return selected k-groups", "Raise error if no solution"
+
+    // Decision nodes (diamonds)
+    node [shape=diamond, style=filled, color=lightyellow]; "Is solution optimal?", "Is there any feasible solution?"
+
+    // Define flow
+    Start -> "Input parameters (n_samples, k, j, s)"
+    "Input parameters (n_samples, k, j, s)" -> "Generate all possible k-groups"
+    "Generate all possible k-groups" -> "Generate all possible j-groups"
+    "Generate all possible j-groups" -> "Generate all s-subgroups for each j-group"
+    "Generate all s-subgroups for each j-group" -> "Set up ILP model"
+    "Set up ILP model" -> "Define decision variables"
+    "Define decision variables" -> "Define objective function"
+    "Define objective function" -> "Set constraints to cover each j-group"
+    "Set constraints to cover each j-group" -> "Solve ILP model"
+    "Solve ILP model" -> "Is solution optimal?"
+    "Is solution optimal?" -> "Return selected k-groups" [label="yes"]
+    "Is solution optimal?" -> "Is there any feasible solution?" [label="no"]
+    "Is there any feasible solution?" -> "Raise error if no solution" [label="no"]
+    "Is there any feasible solution?" -> "Solve ILP model" [label="yes"]
+    "Return selected k-groups" -> End
+    "Raise error if no solution" -> End
+}

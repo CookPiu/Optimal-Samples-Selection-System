@@ -1,0 +1,29 @@
+digraph GreedyFlowchart {
+    rankdir=TB;  // Top to bottom layout
+
+    // Start and end nodes
+    node [shape=ellipse, style=filled, color=lightgray]; "Start","End"
+
+    // Process nodes (rectangles)
+    node [shape=rect, style=filled, color=lightblue]; "Input parameters (n_samples, k, j, s)", "Generate all possible k-groups", "Generate all possible j-groups", "Generate all s-subgroups for each j-group", "Initialize coverage counts", "Select best k-group satisfying max j-groups", "Update coverage count for j-groups" ,"No more candidate k-groups", "Select next best k-group", "End with warning"
+
+    // Decision nodes (diamonds)
+    node [shape=diamond, style=filled, color=lightyellow]; "Are all j-groups covered?", "Is there any candidate k-group left?"
+
+    // Define flow
+    Start -> "Input parameters (n_samples, k, j, s)"
+    "Input parameters (n_samples, k, j, s)" -> "Generate all possible k-groups"
+    "Generate all possible k-groups" -> "Generate all possible j-groups"
+    "Generate all possible j-groups" -> "Generate all s-subgroups for each j-group"
+    "Generate all s-subgroups for each j-group" -> "Initialize coverage counts"
+    "Initialize coverage counts" -> "Are all j-groups covered?"
+    "Are all j-groups covered?" -> "End" [label="yes"]
+    "Are all j-groups covered?" -> "Select next best k-group" [label="no"]
+    "Select best k-group satisfying max j-groups" -> "Update coverage count for j-groups"
+    "Update coverage count for j-groups" -> "Are all j-groups covered?"
+    "No more candidate k-groups" -> "End with warning"
+    "End with warning" -> End
+    "Select next best k-group" -> "Is there any candidate k-group left?"
+    "Is there any candidate k-group left?" -> "No more candidate k-groups" [label="no"]
+    "Is there any candidate k-group left?" -> "Select best k-group satisfying max j-groups" [label="yes"]
+}
